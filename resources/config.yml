@@ -1,0 +1,4 @@
+on-toolbox-cmds:
+  - 'kick "%player%"'
+  - 'ban "%player%"'
+  - 'say %player% tried to use Toolbox! D:'
