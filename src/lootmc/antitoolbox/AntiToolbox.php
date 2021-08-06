@@ -23,6 +23,9 @@ use lootmc\antitoolbox\event\ToolboxDetectedEvent;
 
 class AntiToolbox extends PluginBase implements Listener {
 
+	/** @var AntiToolbox */
+	private static $instance;
+
 	/** @var string[] */
 	private $onToolboxCmds;
 
@@ -30,6 +33,8 @@ class AntiToolbox extends PluginBase implements Listener {
 	private $detected;
 
 	public function onEnable() {
+		self::$instance = $this;
+
 		$config = $this->getConfig();
 		$this->onToolboxCmds = $config->get("on-toolbox-cmds");
 
@@ -79,6 +84,10 @@ class AntiToolbox extends PluginBase implements Listener {
 
 	public function handleQuit(PlayerQuitEvent $ev) {
 		unset($this->detected[spl_object_hash($ev->getPlayer())]);
+	}
+
+	public static function getInstance(): AntiToolbox {
+		return self::$instance;
 	}
 
 }
