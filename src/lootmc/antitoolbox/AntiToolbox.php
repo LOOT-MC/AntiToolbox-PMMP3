@@ -56,7 +56,7 @@ class AntiToolbox extends PluginBase implements Listener {
 		if ($ev->getPacket() instanceof LoginPacket) {
 			$clientData = $ev->getPacket()->clientData;
 			if ($clientData["DeviceOS"] === 1) { // is Android
-				$model = explode(" ", $clientData["DeviceModel"], 1)[0];
+				$model = explode(" ", $clientData["DeviceModel"], 2)[0];
 				if ($model !== strtoupper($model)) {
 					$this->detected[spl_object_hash($ev->getPlayer())] = true;
 				}
